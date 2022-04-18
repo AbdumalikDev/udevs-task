@@ -26,11 +26,31 @@ app.get('/status', (req: Request, res: Response) => {
 app.post('/post', apiRequestLimiter, async (req: Request, res: Response) => {
   try {
     Joi.object({
-      text: Joi.string().required(),
-      priority: Joi.string().valid('low', 'medium', 'high').required(),
+      messages: Joi.array()
+        .items({
+          text: Joi.string().required(),
+          priority: Joi.string().valid('low', 'medium', 'high').required(),
+        })
+        .required(),
     }).validate(req.body)
 
-    await bot.telegram.sendMessage('@udevs_task_group', req.body.text)
+    const { messages } = req.body
+
+    const high_priority = messages.filter((el: any) => el.priority === 'high')
+    const medium_priority = messages.filter(
+      (el: any) => el.priority === 'medium'
+    )
+    const low_priority = messages.filter((el: any) => el.priority === 'low')
+
+    const sorted_messages = [
+      ...high_priority,
+      ...medium_priority,
+      ...low_priority,
+    ]
+
+    for (const el of sorted_messages) {
+      await bot.telegram.sendMessage('@udevs_task_group', el.text)
+    }
   } catch (error) {
     return res.status(500).json({
       success: false,

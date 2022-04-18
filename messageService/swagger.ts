@@ -83,16 +83,40 @@ export default {
               schema: {
                 type: 'object',
                 properties: {
-                  text: {
-                    type: 'string',
-                  },
-                  priority: {
-                    type: 'string',
-                  },
+                  messages: [
+                    {
+                      text: {
+                        type: 'string',
+                      },
+                      priority: {
+                        type: 'string',
+                      },
+                    },
+                  ],
                 },
                 example: {
-                  text: 'Hello this is a test',
-                  priority: 'low',
+                  messages: [
+                    {
+                      text: 'Hello this is a test priority low 1',
+                      priority: 'low',
+                    },
+                    {
+                      text: 'Hello this is a test priority low 2',
+                      priority: 'low',
+                    },
+                    {
+                      text: 'Hello this is a test priority medium 1',
+                      priority: 'medium',
+                    },
+                    {
+                      text: 'Hello this is a test priority high 1',
+                      priority: 'high',
+                    },
+                    {
+                      text: 'Hello this is a test priority high 2',
+                      priority: 'high',
+                    },
+                  ],
                 },
               },
             },
