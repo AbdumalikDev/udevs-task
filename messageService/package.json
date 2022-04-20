@@ -5,14 +5,16 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon --config nodemon.json app.ts",
-    "start": "ts-node app.ts"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grpc/grpc-js": "^1.6.6",
     "express": "^4.17.3",
     "express-rate-limit": "^6.3.0",
+    "google-protobuf": "^3.20.1-rc.1",
     "joi": "^17.6.0",
     "swagger-ui-express": "^4.3.0",
     "telegraf": "^4.7.0"

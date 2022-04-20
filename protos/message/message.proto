@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package demo_message;
+
+service MessageSvc {
+    rpc sendMessage (SendMessageRequest) returns (SendMessageResponse);
+}
+
+message SendMessageRequest {
+    string text = 1;
+    string priority = 2;
+}
+
+message SendMessageResponse {
+    string message = 1;
+}
